@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from service.models import Country, Region, Wine, database
+import os
 app = Flask(__name__)
 
 regions_warp = {2: "Bordeaux Premier Cru - left bank", 3:"Bordeaux Margaux, France",
@@ -9,8 +10,7 @@ regions_warp = {2: "Bordeaux Premier Cru - left bank", 3:"Bordeaux Margaux, Fran
 regions_wanm = {}
 @app.route('/warp', methods=["GET"])
 def warp_view():
-    data = database('postgres://zlilcflfplhrlz:6f30e004db1d1350f142c7b5d1d08a265be214a772c6adf88439c8242e434dfd@ \
-                    ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/dcq1n63u85c8ce')
+    data = database(os.getenv('DATABASE_URL'))
     output = []
     for wine in data.query(Wine):
         output.append({"wine_name": wine.name,
