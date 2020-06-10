@@ -6,13 +6,19 @@ app = Flask(__name__)
 regions_warp = {2: "Bordeaux Premier Cru - left bank", 3:"Bordeaux Margaux, France",
                 5: "Bordeaux Pessac-Léognan/ Graves", 6: "Bordeaux St Emilion- right bank",
                 7: "Bordeaux Pomerols - right bank"}
+
 regions_wajs = {1: "Bordeaux Premier Cru - left bank"}
+
 regions_walpb = {1: "Bordeaux Premier Cru - left bank", 2: "Bordeaux Pessac-Léognan/ Graves",
-                 4: "Bordeaux St Emilion- right bank"}
+                 4: "Bordeaux St Emilion- right bank", 5: "Bordeaux Pomerols - right bank"}
+
 regions_wanm = {1: "Bordeaux Premier Cru - left bank", 3: "Bordeaux Margaux", 4: "Bordeaux Pessac-Léognan/ Graves",
                 5: "Bordeaux St Emilion- right bank", 6: "Bordeaux Pomerols - right bank"}
-countries = {1: "France"}
 
+countries = {1: "France"}
+countries_warp = {2: "France"
+
+                  }
 @app.route('/warp', methods=["GET"])
 def warp_view(): #
     data = database(os.getenv('DATABASE_URL'))
@@ -21,7 +27,7 @@ def warp_view(): #
         output.append({"wine_name": wine.name,
                        "wine_year": wine.year,
                        "wine_region": regions_warp[wine.region_id],
-                       "wine_country": countries[wine.country_id]})
+                       "wine_country": countries_warp[wine.country_id]})
     return jsonify(output)
 
 @app.route('/wanm', methods=["GET"])
