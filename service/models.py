@@ -6,12 +6,11 @@ from sqlalchemy.orm import sessionmaker, relationship
 Base = declarative_base()
 
 def database(name):
-	tables_admin = 'wineadmin'
 
 	Session = sessionmaker()
 
 
-	engine = create_engine(f'postgresql://{tables_admin}:Zxcv.1234@localhost:5432/{name}')
+	engine = create_engine(f'{name}')
 
 	Session.configure(bind=engine)
 	session = Session()
