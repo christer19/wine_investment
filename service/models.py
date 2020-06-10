@@ -1,4 +1,3 @@
-import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, ForeignKey, MetaData, Table
 from sqlalchemy.ext.declarative import declarative_base
