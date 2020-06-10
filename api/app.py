@@ -1,7 +1,12 @@
 from flask import Flask, jsonify, request
 from service.models import Country, Region, Wine, database
 import os
+from flask_cors import CORS, cross_origin
+
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 regions_warp = {2: "Bordeaux Premier Cru - left bank", 3:"Bordeaux Margaux, France",
                 5: "Bordeaux Pessac-Léognan/ Graves", 6: "Bordeaux St Emilion- right bank",
@@ -20,6 +25,7 @@ countries_warp = {2: "France"
 
                   }
 @app.route('/warp', methods=["GET"])
+@cross_origin()
 def warp_view(): #
     data = database(os.getenv('DATABASE_URL'))
     output = []
@@ -31,6 +37,7 @@ def warp_view(): #
     return jsonify(output)
 
 @app.route('/wanm', methods=["GET"])
+@cross_origin()
 def wanm_view():
     data = database(os.getenv('HEROKU_POSTGRESQL_ONYX_URL'))
     output = []
@@ -42,6 +49,7 @@ def wanm_view():
     return jsonify(output)
 
 @app.route('/walpb', methods=["GET"])
+@cross_origin()
 def walpb_view():
     data = database(os.getenv('HEROKU_POSTGRESQL_COPPER_URL'))
     output = []
@@ -53,6 +61,7 @@ def walpb_view():
     return jsonify(output)
 
 @app.route('/wajs', methods=["GET"])
+@cross_origin()
 def wajs_view():
     data = database(os.getenv('HEROKU_POSTGRESQL_BLUE_URL'))
     output = []
