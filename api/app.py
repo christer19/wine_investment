@@ -21,8 +21,7 @@ def warp_view():
 
 @app.route('/wanm', methods=["GET"])
 def wanm_view():
-    data = database('postgres://tcnaxsfrvvjubs:378045f5bb41b0c42e02e0304acab0ed6050e592ef716d599ad74b9f312abc53@ \
-                    ec2-54-217-213-79.eu-west-1.compute.amazonaws.com:5432/d4a36gtnkmqcis')
+    data = database(os.getenv('HEROKU_POSTGRESQL_RED_URL'))
     output = []
     for wine in data.query(Wine):
         output.append({"wine_name": wine.name,
@@ -33,8 +32,7 @@ def wanm_view():
 
 @app.route('/walpb', methods=["GET"])
 def walpb_view():
-    data = database('postgres://vuwtbfbuqhtbwo:2ef525992f1ed61fef6591c34fe1e646f47182be56b485a23f0af6efa2019550@ \
-                    ec2-54-217-213-79.eu-west-1.compute.amazonaws.com:5432/d2dblv80gg5951')
+    data = database(os.getenv('HEROKU_POSTGRESQL_OLIVE_URL'))
     output = []
     for wine in data.query(Wine):
         output.append({"wine_name": wine.name,
@@ -45,8 +43,7 @@ def walpb_view():
 
 @app.route('/wajs', methods=["GET"])
 def wajs_view():
-    data = database('postgres://axguhrtagziiaq:9dc31414d35bea7e9d6d2667665dbf5b32727f50c17e52fcda6bdfe038e533ce@ \
-                    ec2-54-217-213-79.eu-west-1.compute.amazonaws.com:5432/d62m4t98j79fs5')
+    data = database(os.getenv('HEROKU_POSTGRESQL_BLUE_URL'))
     output = []
     for wine in data.query(Wine):
         output.append({"wine_name": wine.name,
