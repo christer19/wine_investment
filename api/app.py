@@ -9,7 +9,7 @@ regions_warp = {2: "Bordeaux Premier Cru - left bank", 3:"Bordeaux Margaux, Fran
 
 regions_wanm = {}
 @app.route('/warp', methods=["GET"])
-def warp_view():
+def warp_view(): #
     data = database(os.getenv('DATABASE_URL'))
     output = []
     for wine in data.query(Wine):
@@ -21,7 +21,7 @@ def warp_view():
 
 @app.route('/wanm', methods=["GET"])
 def wanm_view():
-    data = database(os.getenv('HEROKU_POSTGRESQL_RED_URL'))
+    data = database(os.getenv('HEROKU_POSTGRESQL_SILVER_URL'))
     output = []
     for wine in data.query(Wine):
         output.append({"wine_name": wine.name,
