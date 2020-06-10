@@ -21,7 +21,7 @@ def warp_view(): #
 
 @app.route('/wanm', methods=["GET"])
 def wanm_view():
-    data = database(os.getenv('HEROKU_POSTGRESQL_SILVER_URL'))
+    data = database(os.getenv('HEROKU_POSTGRESQL_ONYX_URL'))
     output = []
     for wine in data.query(Wine):
         output.append({"wine_name": wine.name,
@@ -32,7 +32,7 @@ def wanm_view():
 
 @app.route('/walpb', methods=["GET"])
 def walpb_view():
-    data = database(os.getenv('HEROKU_POSTGRESQL_OLIVE_URL'))
+    data = database(os.getenv('HEROKU_POSTGRESQL_COPPER_URL'))
     output = []
     for wine in data.query(Wine):
         output.append({"wine_name": wine.name,
